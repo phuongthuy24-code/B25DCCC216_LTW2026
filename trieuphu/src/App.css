@@ -154,3 +154,6 @@ td a:hover {
   padding-left: 6px;
   transition: padding 0.15s, color 0.15s;
 }
+a {
+  text-decoration: none;
+}
