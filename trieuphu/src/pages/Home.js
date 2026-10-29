@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
+import { formatMoney } from '../data';
 
-const Home = ({ playerName, setPlayerName }) => {
+const Home = ({ playerName, setPlayerName, history }) => {
   const navigate = useNavigate();
 
   const handleStart = (e) => {
@@ -8,9 +9,20 @@ const Home = ({ playerName, setPlayerName }) => {
     navigate('/play');
   };
 
+  const best = history.reduce(
+    (top, h) => (top === null || h.prize > top.prize ? h : top),
+    null
+  );
+
   return (
     <div>
       <h1>Ai là triệu phú</h1>
+
+      {best && (
+        <p>
+          Kỷ lục: {formatMoney(best.prize)} – {best.name}
+        </p>
+      )}
 
       <h3>Luật chơi</h3>
       <ul>

@@ -1,7 +1,7 @@
 import AnswerButton from './AnswerButton';
 import { LETTERS } from '../data';
 
-const QuestionCard = ({ number, total, question, status, selected, onSelect }) => {
+const QuestionCard = ({ number, total, question, status, selected, hidden, onSelect }) => {
   const getState = (i) => {
     if (status === 'locked' && i === selected) return 'locked';
     if (status === 'revealed') {
@@ -24,16 +24,20 @@ const QuestionCard = ({ number, total, question, status, selected, onSelect }) =
           gap: 12,
         }}
       >
-        {question.options.map((option, i) => (
-          <AnswerButton
-            key={i}
-            letter={LETTERS[i]}
-            text={option}
-            state={getState(i)}
-            disabled={status !== 'answering'}
-            onClick={() => onSelect(i)}
-          />
-        ))}
+        {question.options.map((option, i) =>
+          hidden.includes(i) ? (
+            <div key={i} />
+          ) : (
+            <AnswerButton
+              key={i}
+              letter={LETTERS[i]}
+              text={option}
+              state={getState(i)}
+              disabled={status !== 'answering'}
+              onClick={() => onSelect(i)}
+            />
+          )
+        )}
       </div>
     </div>
   );
