@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { formatMoney } from '../data';
+import { formatMoney, PRIZES } from '../data';
 
 const Home = ({ playerName, setPlayerName, history }) => {
   const navigate = useNavigate();
@@ -27,7 +27,8 @@ const Home = ({ playerName, setPlayerName, history }) => {
       <h3>Luật chơi</h3>
       <ul>
         <li>Có 15 câu hỏi trắc nghiệm, mỗi câu có 30 giây.</li>
-        <li>Trả lời đúng thì lên bậc tiền thưởng tiếp theo, câu 15 trị giá 250.000.000 đ.</li>
+        <li>Trả lời đúng thì lên bậc tiền thưởng tiếp theo, câu 15 trị giá{' '}
+            {formatMoney(PRIZES[PRIZES.length - 1])}.</li>
         <li>Câu 5, 10, 15 là các mốc an toàn.</li>
         <li>Trả lời sai hoặc hết giờ thì chỉ nhận tiền của mốc an toàn cao nhất đã vượt qua.</li>
         <li>Có 3 quyền trợ giúp: 50:50, Hỏi khán giả, Dừng cuộc chơi.</li>
