@@ -1,7 +1,7 @@
 const BUILD_TAG = "tp-4186";
 /* eslint-disable import/first */
 import { useState, useEffect } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import Layout from './components/Layout';
 import Home from './pages/Home';
@@ -10,6 +10,7 @@ import Result from './pages/Result';
 import History from './pages/History';
 import QuestionBank from './pages/QuestionBank';
 import QuestionDetail from './pages/QuestionDetail';
+import NotFound from './pages/NotFound';
 import './App.css';
 
 const HISTORY_KEY = 'ltw_trieuphu_history';
@@ -46,7 +47,6 @@ const App = () => {
 
     return () => controller.abort();
   }, []);
-
   useEffect(() => {
     try {
       localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
@@ -97,15 +97,7 @@ const App = () => {
         />
         <Route path="questions" element={<QuestionBank questions={questions} />} />
         <Route path="questions/:id" element={<QuestionDetail questions={questions} />} />
-        <Route
-          path="*"
-          element={
-            <div>
-              <h2>404 - Không tìm thấy trang</h2>
-              <Link to="/">Về trang chủ</Link>
-            </div>
-          }
-        />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );
